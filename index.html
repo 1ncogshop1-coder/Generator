@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1NCOGCHEAT | GENERADOR DE SENSIBILIDAD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Orbitron',sans-serif;
+background:#000;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200') center/cover;
+opacity:0.15;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+inset:0;
+background:linear-gradient(to bottom,#000000ef,#040404);
+z-index:-1;
+}
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:red;
+filter:blur(150px);
+opacity:0.15;
+border-radius:50%;
+animation:move 8s infinite alternate;
+z-index:-1;
+}
+
+@keyframes move{
+0%{
+transform:translate(-100px,-100px);
+}
+100%{
+transform:translate(250px,400px);
+}
+}
+
+.container{
+width:92%;
+max-width:520px;
+margin:auto;
+padding-top:25px;
+padding-bottom:40px;
+}
+
+.logo{
+font-size:40px;
+font-weight:900;
+color:#ff4d4d;
+text-shadow:0 0 15px red;
+}
+
+.sub{
+margin-top:6px;
+font-size:13px;
+letter-spacing:3px;
+color:#999;
+}
+
+.card{
+margin-top:35px;
+background:#101010d7;
+border:1px solid #262626;
+border-radius:25px;
+padding:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 35px rgba(255,0,0,0.1);
+}
+
+.title{
+font-size:42px;
+font-weight:900;
+line-height:1.1;
+text-align:center;
+margin-bottom:18px;
+}
+
+.title span{
+color:#ff5555;
+}
+
+.desc{
+text-align:center;
+color:#999;
+font-size:14px;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+.platforms{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+}
+
+.platform{
+flex:1;
+background:#171717;
+padding:28px 10px;
+border-radius:20px;
+text-align:center;
+border:2px solid transparent;
+cursor:pointer;
+transition:0.3s;
+}
+
+.platform:hover{
+transform:scale(1.03);
+}
+
+.platform.active{
+border-color:#ff3d3d;
+box-shadow:0 0 20px rgba(255,0,0,0.4);
+}
+
+.platform img{
+width:55px;
+margin-bottom:10px;
+}
+
+.platform p{
+font-size:18px;
+}
+
+input{
+width:100%;
+padding:18px;
+border:none;
+outline:none;
+border-radius:15px;
+background:#0d0d0d;
+border:1px solid #333;
+color:white;
+font-size:15px;
+font-family:'Orbitron',sans-serif;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:#9b0000;
+color:white;
+font-size:22px;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+font-family:'Orbitron',sans-serif;
+letter-spacing:2px;
+}
+
+button:hover{
+background:#c40000;
+box-shadow:0 0 25px rgba(255,0,0,0.5);
+}
+
+.result{
+display:none;
+margin-top:30px;
+animation:show 0.5s ease;
+}
+
+@keyframes show{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.result-card{
+background:#111;
+border-radius:20px;
+padding:20px;
+border:1px solid #292929;
+}
+
+.result-card h2{
+text-align:center;
+color:#ff5b5b;
+margin-bottom:20px;
+}
+
+.line{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#1a1a1a;
+padding:14px;
+border-radius:12px;
+margin-bottom:12px;
+}
+
+.line span{
+color:#ff4d4d;
+font-weight:700;
+}
+
+.badge{
+margin-top:15px;
+background:#1f0000;
+border:1px solid #ff3434;
+padding:12px;
+border-radius:12px;
+text-align:center;
+font-size:12px;
+color:#ff9d9d;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+font-size:12px;
+color:#555;
+}
+
+/* ERROR BONITO */
+
+.error-popup{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+border:1px solid #ff3c3c;
+padding:16px 22px;
+border-radius:16px;
+color:white;
+font-size:14px;
+z-index:9999;
+box-shadow:0 0 25px rgba(255,0,0,0.45);
+animation:showError .3s ease;
+}
+
+@keyframes showError{
+from{
+opacity:0;
+transform:translateX(-50%) translateY(-20px);
+}
+to{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+
+<div class="logo">1NCOGCHEAT</div>
+<div class="sub">GENERADOR DE SENSIBILIDAD FF</div>
+
+<div class="card">
+
+<div class="title">
+¿CUÁL ES TU <span>DISPOSITIVO?</span>
+</div>
+
+<div class="desc">
+El sistema analizará tu modelo de celular y generará
+una sensibilidad única optimizada para Free Fire.
+</div>
+
+<div class="platforms">
+
+<div class="platform active" id="android">
+<img src="https://cdn-icons-png.flaticon.com/512/174/174836.png">
+<p>ANDROID</p>
+</div>
+
+<div class="platform" id="ios">
+<img src="https://cdn-icons-png.flaticon.com/512/731/731985.png">
+<p>IOS</p>
+</div>
+
+</div>
+
+<input type="text" id="modelo" placeholder="Ej: Samsung S24 Ultra">
+
+<button onclick="generar()">CONTINUAR</button>
+
+<div class="result" id="result">
+
+<div class="result-card">
+
+<h2>SENSIBILIDAD PERFECTA</h2>
+
+<div class="line">
+<div>GENERAL</div>
+<span id="general">0</span>
+</div>
+
+<div class="line">
+<div>PUNTO ROJO</div>
+<span id="rojop">0</span>
+</div>
+
+<div class="line">
+<div>MIRA 2X</div>
+<span id="mira2x">0</span>
+</div>
+
+<div class="line">
+<div>MIRA 4X</div>
+<span id="mira4x">0</span>
+</div>
+
+<div class="line">
+<div>AWM</div>
+<span id="awm">0</span>
+</div>
+
+<div class="line">
+<div>CÁMARA</div>
+<span id="camara">0</span>
+</div>
+
+<div class="badge" id="badge">
+SENSIBILIDAD PREMIUM ACTIVADA
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 1NCOGCHEAT - ALL RIGHTS RESERVED
+</div>
+
+<script>
+
+let sistema = "android";
+
+document.getElementById("android").onclick = function(){
+
+sistema = "android";
+
+document.getElementById("android").classList.add("active");
+document.getElementById("ios").classList.remove("active");
+
+}
+
+document.getElementById("ios").onclick = function(){
+
+sistema = "ios";
+
+document.getElementById("ios").classList.add("active");
+document.getElementById("android").classList.remove("active");
+
+}
+
+const sensiDB = {
+
+"iphone 15 pro max":{
+general:200,
+rojop:196,
+mira2x:180,
+mira4x:162,
+awm:120,
+camara:194
+},
+
+"samsung s24 ultra":{
+general:200,
+rojop:198,
+mira2x:182,
+mira4x:165,
+awm:123,
+camara:195
+},
+
+"poco x6 pro":{
+general:199,
+rojop:195,
+mira2x:179,
+mira4x:162,
+awm:121,
+camara:193
+}
+
+};
+
+// ERROR BONITO
+function mostrarError(texto){
+
+const popup = document.createElement("div");
+
+popup.className = "error-popup";
+
+popup.innerHTML = "⚠️ " + texto;
+
+document.body.appendChild(popup);
+
+setTimeout(()=>{
+popup.remove();
+},2500);
+
+}
+
+// GENERAR
+function generar(){
+
+let modelo = document.getElementById("modelo").value.toLowerCase().trim();
+
+if(modelo == ""){
+
+mostrarError("INGRESA TU MODELO DE CELULAR");
+
+return;
+
+}
+
+let data;
+
+if(sensiDB[modelo]){
+
+data = sensiDB[modelo];
+
+}else{
+
+let hash = 0;
+
+for(let i = 0; i < modelo.length; i++){
+
+hash += modelo.charCodeAt(i) * (i + 1);
+
+}
+
+let potencia = 0;
+
+if(modelo.includes("ultra")) potencia += 18;
+if(modelo.includes("pro")) potencia += 14;
+if(modelo.includes("plus")) potencia += 10;
+if(modelo.includes("max")) potencia += 12;
+if(modelo.includes("iphone")) potencia += 20;
+if(modelo.includes("snapdragon")) potencia += 16;
+if(modelo.includes("gaming")) potencia += 22;
+if(modelo.includes("gt")) potencia += 15;
+if(modelo.includes("rog")) potencia += 25;
+if(modelo.includes("redmagic")) potencia += 25;
+if(modelo.includes("poco")) potencia += 18;
+
+let base = 140 + (hash % 35) + potencia;
+
+data = {
+
+general:Math.min(200, base + 25),
+
+rojop:Math.min(200, base + 18 + (hash % 7)),
+
+mira2x:Math.min(200, base - 5 + (hash % 10)),
+
+mira4x:Math.min(200, base - 18 + (hash % 8)),
+
+awm:Math.min(200, 85 + (hash % 35) + Math.floor(potencia / 2)),
+
+camara:Math.min(200, base + 10 + (hash % 5))
+
+};
+
+}
+
+document.getElementById("general").innerText = data.general;
+document.getElementById("rojop").innerText = data.rojop;
+document.getElementById("mira2x").innerText = data.mira2x;
+document.getElementById("mira4x").innerText = data.mira4x;
+document.getElementById("awm").innerText = data.awm;
+document.getElementById("camara").innerText = data.camara;
+
+document.getElementById("badge").innerHTML =
+"SENSI OPTIMIZADA PARA: " + modelo.toUpperCase();
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
